@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskFlow — мини-React</title>
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <div id="app-status" class="app-status" role="status" hidden></div>
+    <main class="app-main">
+      <section id="board" class="mini-react-root" aria-label="Канбан-доска на мини-React"></section>
+    </main>
+    <div id="modal-root"></div>
+    <div id="toast-root" class="toast-container" aria-live="polite"></div>
+    <script type="module" src="/src/main.mini-react.js"></script>
+  </body>
+</html>

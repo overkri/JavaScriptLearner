@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="TaskFlow — учебный проект курса JavaScript для Java-разработчика"
+    />
+    <title>TaskFlow — JavaScript для Java-разработчика</title>
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="brand">
+        <span class="brand__logo" aria-hidden="true">▦</span>
+        <div>
+          <h1 class="brand__title">TaskFlow</h1>
+          <p class="brand__subtitle">Курс JavaScript для Java-разработчика</p>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <label class="search" aria-label="Поиск задач">
+          <span class="search__icon" aria-hidden="true">⌕</span>
+          <input
+            id="search"
+            class="search__input"
+            type="search"
+            placeholder="Поиск: tag:work !done &quot;buy milk&quot;"
+            autocomplete="off"
+          />
+        </label>
+        <button id="btn-stats" class="button" type="button" title="Статистика">Статистика</button>
+        <button id="btn-undo" class="button" type="button" title="Отменить (Ctrl+Z)" disabled>
+          ↶
+        </button>
+        <button id="btn-redo" class="button" type="button" title="Повторить (Ctrl+Shift+Z)" disabled>
+          ↷
+        </button>
+        <button id="btn-add" class="button button--primary" type="button">+ Задача</button>
+        <button id="btn-theme" class="button button--icon" type="button" title="Сменить тему">
+          ◐
+        </button>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <div id="app-status" class="app-status" role="status" hidden></div>
+
+      <!-- Статичный макет доски. main.js заменит его живой доской,
+           когда будут выполнены модули 3 и 6. -->
+      <section id="board" class="board" aria-label="Канбан-доска">
+        <section class="board-column" data-status="todo">
+          <header class="column-header">
+            <h2>К выполнению</h2>
+            <span class="column-count">4</span>
+          </header>
+          <div class="column-cards">
+            <article class="task-card priority-high">
+              <h3 class="task-card__title">Настроить окружение</h3>
+              <p class="task-card__description">npm, Vite, Vitest, DevTools</p>
+              <div class="task-card__tags">
+                <span class="tag">#setup</span><span class="tag">#js</span>
+              </div>
+              <footer class="task-card__footer">
+                <span class="task-card__due">📅 2026-11-10</span>
+                <span class="task-card__priority">high</span>
+              </footer>
+            </article>
+            <article class="task-card priority-medium">
+              <h3 class="task-card__title">Разобраться с типами</h3>
+              <p class="task-card__description">typeof, ==, NaN, truthy/falsy</p>
+              <div class="task-card__tags">
+                <span class="tag">#js</span><span class="tag">#basics</span>
+              </div>
+              <footer class="task-card__footer">
+                <span class="task-card__due">📅 2026-11-12</span>
+                <span class="task-card__priority">medium</span>
+              </footer>
+            </article>
+            <article class="task-card priority-high">
+              <h3 class="task-card__title">Классы и this</h3>
+              <p class="task-card__description">bind, call, apply, прототипы</p>
+              <div class="task-card__tags"><span class="tag">#oop</span></div>
+              <footer class="task-card__footer">
+                <span class="task-card__due">без срока</span>
+                <span class="task-card__priority">high</span>
+              </footer>
+            </article>
+            <article class="task-card priority-high">
+              <h3 class="task-card__title">DOM: карточки задач</h3>
+              <p class="task-card__description">createElement, события, делегирование</p>
+              <div class="task-card__tags"><span class="tag">#dom</span></div>
+              <footer class="task-card__footer">
+                <span class="task-card__due">📅 2026-11-20</span>
+                <span class="task-card__priority">high</span>
+              </footer>
+            </article>
+          </div>
+        </section>
+
+        <section class="board-column" data-status="in-progress">
+          <header class="column-header">
+            <h2>В работе</h2>
+            <span class="column-count">3</span>
+          </header>
+          <div class="column-cards">
+            <article class="task-card priority-high">
+              <h3 class="task-card__title">Написать debounce</h3>
+              <p class="task-card__description">Замыкания и таймеры</p>
+              <div class="task-card__tags">
+                <span class="tag">#functions</span><span class="tag">#js</span>
+              </div>
+              <footer class="task-card__footer">
+                <span class="task-card__due">📅 2026-11-09</span>
+                <span class="task-card__priority">high</span>
+              </footer>
+            </article>
+            <article class="task-card priority-medium">
+              <h3 class="task-card__title">Иммутабельные операции</h3>
+              <p class="task-card__description">spread, map/filter/reduce</p>
+              <div class="task-card__tags">
+                <span class="tag">#arrays</span><span class="tag">#react</span>
+              </div>
+              <footer class="task-card__footer">
+                <span class="task-card__due is-overdue">📅 2026-11-05</span>
+                <span class="task-card__priority">medium</span>
+              </footer>
+            </article>
+            <article class="task-card priority-medium">
+              <h3 class="task-card__title">Модальное окно</h3>
+              <p class="task-card__description">focus trap, Esc, aria</p>
+              <div class="task-card__tags">
+                <span class="tag">#dom</span><span class="tag">#ui</span>
+              </div>
+              <footer class="task-card__footer">
+                <span class="task-card__due">📅 2026-11-18</span>
+                <span class="task-card__priority">medium</span>
+              </footer>
+            </article>
+          </div>
+        </section>
+
+        <section class="board-column" data-status="done">
+          <header class="column-header">
+            <h2>Готово</h2>
+            <span class="column-count">2</span>
+          </header>
+          <div class="column-cards">
+            <article class="task-card priority-low">
+              <h3 class="task-card__title">ES-модули</h3>
+              <p class="task-card__description">barrel, dynamic import</p>
+              <div class="task-card__tags"><span class="tag">#modules</span></div>
+              <footer class="task-card__footer">
+                <span class="task-card__due">📅 2026-11-01</span>
+                <span class="task-card__priority">low</span>
+              </footer>
+            </article>
+            <article class="task-card priority-low">
+              <h3 class="task-card__title">localStorage</h3>
+              <p class="task-card__description">JSON, версии схемы</p>
+              <div class="task-card__tags"><span class="tag">#storage</span></div>
+              <footer class="task-card__footer">
+                <span class="task-card__due">📅 2026-10-30</span>
+                <span class="task-card__priority">low</span>
+              </footer>
+            </article>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <div id="modal-root"></div>
+    <div id="toast-root" class="toast-container" aria-live="polite"></div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

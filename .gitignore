@@ -1,0 +1,11 @@
+node_modules/
+dist/
+coverage/
+.verify-*/
+.idea/
+.vscode/
+*.log
+.vite/
+.DS_Store
+Thumbs.db
+*.tsbuildinfo
