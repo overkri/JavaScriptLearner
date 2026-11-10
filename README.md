@@ -240,4 +240,6 @@ Fake-сервер намеренно ошибается в 15% случаев. �
 
 Проект распространяется по лицензии **MIT**. См. [LICENSE](./LICENSE).
 
+Вайб — [Vibe Coding License 1.0](./VIBE.md): это манифест, а не лицензия. Код остаётся под MIT.
+
 Copyright (c) 2026 TaskFlow JS Course contributors.
